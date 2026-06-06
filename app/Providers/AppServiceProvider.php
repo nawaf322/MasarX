@@ -26,6 +26,9 @@ class AppServiceProvider extends ServiceProvider
 
         // MoyasarService holds no mutable state — singleton avoids repeated config reads
         $this->app->singleton(\App\Services\MoyasarService::class);
+
+        // Saudi carrier aggregator — singleton so config is read once per request cycle
+        $this->app->singleton(\App\Services\Carriers\CarrierManager::class);
     }
 
     public function boot(): void
