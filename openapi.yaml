@@ -1,0 +1,85 @@
+openapi: 3.0.0
+info:
+  title: Deprixa Plus Driver API
+  version: 1.0.0
+  description: API for Driver Mobile Application to manage assigned shipments.
+
+servers:
+  - url: https://api.deprixa-plus.com/api/v1
+    description: Production Server
+
+paths:
+  /driver/assigned-shipments:
+    get:
+      summary: Get assigned shipments
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: List of assigned shipments
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Shipment'
+
+  /driver/update-status:
+    post:
+      summary: Update shipment status
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - tracking_number
+                - status
+              properties:
+                tracking_number:
+                  type: string
+                status:
+                  type: string
+                  enum: [delivered, picked_up, returned]
+                proof_photo:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: Status updated successfully
+
+  /driver/profile:
+    get:
+      summary: Get driver profile
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Driver profile and stats
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    Shipment:
+      type: object
+      properties:
+        uuid:
+          type: string
+        tracking_number:
+          type: string
+        status:
+          type: string
+        sender_details:
+          type: object
+        receiver_details:
+          type: object
+        package_details:
+          type: object

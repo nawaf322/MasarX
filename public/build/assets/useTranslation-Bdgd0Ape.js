@@ -1,0 +1,1 @@
+import{u as i}from"./vendor-i18n-CRXc3HNV.js";function g(){const{t:r,i18n:n}=i();return{t:(s,e)=>{const t=r(s,{...e,returnObjects:!1});return typeof t!="string"||!e?t:Object.entries(e).reduce((u,[o,a])=>u.replace(new RegExp(`:${o}\\b`,"g"),String(a)),t)},locale:n.language,i18n:n}}export{g as u};

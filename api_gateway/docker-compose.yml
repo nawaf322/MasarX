@@ -1,0 +1,28 @@
+version: "3.8"
+services:
+  api_gateway:
+    build: .
+    ports:
+      - "8001:8001"
+    env_file:
+      - .env
+    environment:
+      - REDIS_URL=redis://redis:6379/1
+      - DB_HOST=host.docker.internal
+      - LARAVEL_INTERNAL_URL=http://host.docker.internal:8000
+      - DB_PORT=3306
+      - DB_DATABASE=deprixa_plus
+      - DB_USERNAME=root
+      - DB_PASSWORD=${DB_PASSWORD:-}
+    depends_on:
+      - redis
+    healthcheck:
+      test: ["CMD", "curl", "-sf", "http://localhost:8001/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
