@@ -57,7 +57,7 @@ class ImportLocationsCommand extends Command
 
             $context = stream_context_create([
                 "http" => [
-                    "header" => "User-Agent: DeprixaPlus/1.0
+                    "header" => "User-Agent: MasarXPlus/1.0
 "
                 ]
             ]);

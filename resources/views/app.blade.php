@@ -7,7 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="app-locale" content="{{ str_replace('_', '-', app()->getLocale()) }}">
 
-    <title inertia>{{ config('app.name', 'Deprixa Plus') }}</title>
+    <title inertia>{{ config('app.name', 'MasarX') }}</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">

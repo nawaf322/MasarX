@@ -151,7 +151,7 @@ class ShipmentObserver
                 'status_id' => $shipment->shipmentStatus?->id,
                 'status' => $statusCode,
                 'description' => 'Status updated to ' . $statusLabel,
-                'location' => 'Deprixa Hub',
+                'location' => 'MasarX Hub',
                 'user_id' => $userId,
                 'organization_id' => $shipment->organization_id,
             ]);

@@ -102,7 +102,7 @@ class CheckUpdatesCommand extends Command
                     'user_id'    => $admin->id,
                     'type'       => 'update_available',
                     'title'      => "🆕 Update v{$version} available",
-                    'body'       => $summary ?: "A new version of Deprixa is available. Go to Settings → Updates to apply it.",
+                    'body'       => $summary ?: "A new version of MasarX is available. Go to Settings → Updates to apply it.",
                     'icon'       => 'bell',
                     'url'        => '/settings/updates',
                     'read'       => false,

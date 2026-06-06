@@ -207,7 +207,7 @@ class MaintenanceController extends Controller
 
         $this->audit?->log('export', 'maintenance', 'Exported Settings JSON', null, null);
 
-        $filename = 'deprixa-settings-org' . $orgId . '-' . now()->format('Ymd_His') . '.json';
+        $filename = 'masarx-settings-org' . $orgId . '-' . now()->format('Ymd_His') . '.json';
         $payload = json_encode([
             'organization_id' => $orgId,
             'exported_at'     => now()->toIso8601String(),

@@ -24,7 +24,7 @@ export default function Branding({ branding }: { branding: any }) {
     const initialData = branding || {};
 
     const [formState, setFormState] = useState<Record<string, any>>({
-        site_name: initialData.app_name || 'Deprixa Plus',
+        site_name: initialData.app_name || 'MasarX',
         primary_color: initialData.primary_color || '#4F46E5',
         secondary_color: initialData.secondary_color || '#10B981',
         accent_color: initialData.accent_color || '#F59E0B',

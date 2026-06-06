@@ -85,7 +85,7 @@ export function RatesResultCard({ rate, index, countries = [], calcInputs }: Rat
         };
 
         try {
-            localStorage.setItem('deprixa_calculator_prefill', JSON.stringify(prefill));
+            localStorage.setItem('masarx_calculator_prefill', JSON.stringify(prefill));
         } catch { /* storage unavailable */ }
 
         router.visit(route('shipments.from-rate'));

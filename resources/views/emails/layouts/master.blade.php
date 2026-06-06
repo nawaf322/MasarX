@@ -72,7 +72,7 @@
                 <img src="{{ $branding['logo_url'] }}" alt="Logo" />
             @else
                 <h1 style="color: #ffffff; margin: 0; font-size: 24px;">
-                    {{ $branding['company_name'] ?? 'Deprixa Logistics' }}</h1>
+                    {{ $branding['company_name'] ?? 'MasarX Logistics' }}</h1>
             @endif
         </div>
 
@@ -81,7 +81,7 @@
         </div>
 
         <div class="footer">
-            <p>&copy; {{ date('Y') }} {{ $branding['company_name'] ?? 'Deprixa Logistics' }}. All rights reserved.</p>
+            <p>&copy; {{ date('Y') }} {{ $branding['company_name'] ?? 'MasarX Logistics' }}. All rights reserved.</p>
             <p>
                 <a href="{{ url('/') }}">Track Shipment</a> |
                 <a href="{{ url('/privacy') }}">Privacy Policy</a>

@@ -10,7 +10,7 @@ return [
     'finalizing'                => 'Finalizando instalación…',
 
     // Paso 1 — Bienvenida
-    'welcome_title'             => 'Bienvenido a Deprixa Plus',
+    'welcome_title'             => 'Bienvenido a MasarX',
     'welcome_subtitle'          => 'Antes de comenzar, verifiquemos que tu servidor cumple con todos los requisitos.',
     'welcome_subtitle2'         => 'Todas las verificaciones deben pasar antes de continuar.',
     'checking_requirements'     => 'Verificando requisitos…',
@@ -18,7 +18,7 @@ return [
 
     // Paso 2 — Licencia
     'license_title'             => 'Verificación de licencia',
-    'license_subtitle'          => 'Ingresa tu código de compra de Envato para activar Deprixa Plus.',
+    'license_subtitle'          => 'Ingresa tu código de compra de Envato para activar MasarX.',
     'purchase_code'             => 'Código de compra',
     'purchase_code_help'        => '¿Dónde está mi código de compra?',
     'envato_username'           => 'Usuario de Envato',

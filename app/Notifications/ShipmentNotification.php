@@ -219,7 +219,7 @@ class ShipmentNotification extends Notification implements ShouldQueue
         $org = $this->shipment->organization; // Relation assuming exists
         // Mock or fetch logic if relation missing, likely already eager loaded or simple query
         return [
-            'company_name' => $org->name ?? 'Deprixa Logistics',
+            'company_name' => $org->name ?? 'MasarX Logistics',
             'logo_url' => $org->logo_url ?? null,
             'primary_color' => $org->primary_color ?? '#1f2937'
         ];

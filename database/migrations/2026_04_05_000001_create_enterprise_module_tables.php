@@ -102,7 +102,7 @@ return new class extends Migration
                 $table->id();
                 $table->foreignId('organization_id')->constrained()->cascadeOnDelete();
                 $table->unsignedBigInteger('api_client_id')->nullable();
-                $table->string('provider'); // deprixa|shipment|etc
+                $table->string('provider'); // masarx|shipment|etc
                 $table->string('event');    // shipment.created|tracking.updated|etc
                 $table->text('callback_url');
                 $table->text('secret')->nullable();

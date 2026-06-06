@@ -8,7 +8,7 @@ use Illuminate\Support\ServiceProvider;
 /**
  * DomainEventServiceProvider
  *
- * Registers all domain event → listener wiring for the deprixa-plus domain.
+ * Registers all domain event → listener wiring for the masarx-plus domain.
  * Extracted from AppServiceProvider (Phase 9 refactor) to keep providers focused.
  *
  * AppServiceProvider retains: singletons, Gate bypass, model observers, auth events.

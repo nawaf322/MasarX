@@ -8,14 +8,14 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 /**
- * Parses a phpMyAdmin SQL dump from Deprixa Pro and imports
- * cdb_pre_alert rows into the deprixa-plus pre_alerts table.
+ * Parses a phpMyAdmin SQL dump from MasarX Pro and imports
+ * cdb_pre_alert rows into the masarx-plus pre_alerts table.
  *
  * Requires:
  *   - cdb_pre_alert  -> the pre-alert rows
  *   - cdb_users      -> to resolve old customer_id -> email -> new User
  */
-class DeprixaProPreAlertImporter
+class MasarXProPreAlertImporter
 {
     private string $sql;
     private int    $orgId;
@@ -214,7 +214,7 @@ class DeprixaProPreAlertImporter
     }
 
     // ──────────────────────────────────────────────────────────────────────────
-    // SQL PARSER (copied from DeprixaProImporter to avoid refactor risk)
+    // SQL PARSER (copied from MasarXProImporter to avoid refactor risk)
     // ──────────────────────────────────────────────────────────────────────────
 
     /**

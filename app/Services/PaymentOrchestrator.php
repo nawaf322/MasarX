@@ -151,7 +151,7 @@ class PaymentOrchestrator
         $cancelUrl = route('shipments.show', ['shipment' => $shipment->id]);
 
         $org = \App\Models\Organization::find($shipment->organization_id);
-        $brandName = !empty(trim((string)($org?->name ?? ''))) ? $org->name : 'DeprixaPlus';
+        $brandName = !empty(trim((string)($org?->name ?? ''))) ? $org->name : 'MasarXPlus';
 
         $orderPayload = [
             'intent' => 'CAPTURE',

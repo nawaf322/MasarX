@@ -37,7 +37,7 @@ class CarrierFactory
     public static function make(string $carrierName, array $credentials = [], string $mode = 'test'): CarrierStrategy
     {
         return match (strtolower($carrierName)) {
-            'local', 'deprixa' => new LocalCarrierAdapter(),
+            'local', 'masarx' => new LocalCarrierAdapter(),
             'dhl'   => new CarrierAdapterBridge(new DHLAdapter(),   'dhl',   $credentials, $mode),
             'fedex' => new CarrierAdapterBridge(new FedExAdapter(), 'fedex', $credentials, $mode),
             'ups'   => new CarrierAdapterBridge(new UPSAdapter(),   'ups',   $credentials, $mode),

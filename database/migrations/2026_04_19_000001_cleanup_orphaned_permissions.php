@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Artisan;
 /**
  * Removes permissions that have no corresponding route guard, controller check,
  * or nav visibility function. These were legacy/placeholder permissions that
- * do not belong in this version of Deprixa Plus:
+ * do not belong in this version of MasarX:
  *
  *  - manage settings   (never used in routes or controllers)
  *  - manage users      (nav now uses customers.access; no route check)

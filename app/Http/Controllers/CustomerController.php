@@ -212,10 +212,10 @@ class CustomerController extends Controller
     }
 
     /**
-     * Import customers from a Deprixa Pro SQL dump (cdb_users + optional cdb_senders_addresses).
-     * POST /customers/import-deprixa-pro
+     * Import customers from a MasarX Pro SQL dump (cdb_users + optional cdb_senders_addresses).
+     * POST /customers/import-masarx-pro
      */
-    public function importDeprixaPro(Request $request)
+    public function importMasarXPro(Request $request)
     {
         $request->validate([
             'files'   => 'required|array|min:1|max:6',
@@ -253,7 +253,7 @@ class CustomerController extends Controller
         }
 
         try {
-            $importer = new \App\Services\DeprixaProImporter($sqlContent, Auth::user()->organization_id);
+            $importer = new \App\Services\MasarXProImporter($sqlContent, Auth::user()->organization_id);
             $result   = $importer->import(false);
         } catch (\Throwable $e) {
             return response()->json([

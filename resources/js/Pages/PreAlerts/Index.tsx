@@ -104,10 +104,10 @@ function ImportModal({ open, onClose, onSuccess }: {
     onSuccess: () => void;
 }) {
     const { t } = useTranslation();
-    type Tab = 'template' | 'deprixa_pro';
-    const [tab, setTab] = useState<Tab>('deprixa_pro');
+    type Tab = 'template' | 'masarx_pro';
+    const [tab, setTab] = useState<Tab>('masarx_pro');
 
-    // ── Tab 2: Deprixa Pro SQL ──
+    // ── Tab 2: MasarX Pro SQL ──
     const sqlRef   = useRef<HTMLInputElement>(null);
     const [sqlFiles, setSqlFiles]     = useState<File[]>([]);
     const [sqlResult, setSqlResult]   = useState<ImportResult | null>(null);
@@ -129,7 +129,7 @@ function ImportModal({ open, onClose, onSuccess }: {
         const form = new FormData();
         sqlFiles.forEach(f => form.append('files[]', f));
         try {
-            const res = await axios.post(route('pre-alerts.import-deprixa-pro'), form, {
+            const res = await axios.post(route('pre-alerts.import-masarx-pro'), form, {
                 headers: { 'Content-Type': 'multipart/form-data' },
             });
             setSqlResult(res.data);
@@ -174,15 +174,15 @@ function ImportModal({ open, onClose, onSuccess }: {
                         {t('pre_alerts.import_tab_template')}
                     </button>
                     <button
-                        onClick={() => { setTab('deprixa_pro'); setSqlResult(null); }}
+                        onClick={() => { setTab('masarx_pro'); setSqlResult(null); }}
                         className={`flex-1 flex items-center justify-center gap-2 py-3 text-sm font-medium transition-colors ${
-                            tab === 'deprixa_pro'
+                            tab === 'masarx_pro'
                                 ? 'border-b-2 border-orange-500 text-orange-700 dark:text-orange-400'
                                 : 'text-gray-500 hover:text-gray-700 dark:hover:text-gray-300'
                         }`}
                     >
                         <Database className="h-4 w-4" />
-                        {t('pre_alerts.import_tab_deprixa_pro')}
+                        {t('pre_alerts.import_tab_masarx_pro')}
                     </button>
                 </div>
 
@@ -195,8 +195,8 @@ function ImportModal({ open, onClose, onSuccess }: {
                         </div>
                     )}
 
-                    {/* ── TAB 2: Deprixa Pro SQL ── */}
-                    {tab === 'deprixa_pro' && (
+                    {/* ── TAB 2: MasarX Pro SQL ── */}
+                    {tab === 'masarx_pro' && (
                         <>
                             {/* Info box */}
                             <div className="p-3 bg-orange-50 dark:bg-orange-950/30 rounded-lg border border-orange-200 dark:border-orange-800 text-sm text-orange-800 dark:text-orange-300 space-y-1">
@@ -246,7 +246,7 @@ function ImportModal({ open, onClose, onSuccess }: {
                     >
                         {t('common.cancel')}
                     </button>
-                    {tab === 'deprixa_pro' && (
+                    {tab === 'masarx_pro' && (
                         <button
                             onClick={handleSqlImport}
                             disabled={sqlFiles.length === 0 || sqlLoading}

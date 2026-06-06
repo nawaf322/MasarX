@@ -49,7 +49,7 @@ class WebhookEnterpriseTest extends TestCase
         $secret = 'my_webhook_secret_123';
         ApiWebhookSubscription::create([
             'organization_id' => $org->id,
-            'provider' => 'deprixa',
+            'provider' => 'masarx',
             'event' => 'shipment.created',
             'callback_url' => 'https://example.com/webhook',
             'secret' => Crypt::encryptString($secret),
@@ -71,8 +71,8 @@ class WebhookEnterpriseTest extends TestCase
 
         Http::assertSent(function ($request) use ($secret) {
             $body = $request->body();
-            $timestamp = $request->header('X-Deprixa-Timestamp')[0] ?? '';
-            $sigHeader = $request->header('X-Deprixa-Signature')[0] ?? '';
+            $timestamp = $request->header('X-MasarX-Timestamp')[0] ?? '';
+            $sigHeader = $request->header('X-MasarX-Signature')[0] ?? '';
             $expectedSig = 'sha256=' . hash_hmac('sha256', $timestamp . '.' . $body, $secret);
             return str_starts_with($sigHeader, 'sha256=')
                 && hash_equals($expectedSig, $sigHeader)
@@ -89,7 +89,7 @@ class WebhookEnterpriseTest extends TestCase
         $org = Organization::factory()->create(['is_active' => true]);
         ApiWebhookSubscription::create([
             'organization_id' => $org->id,
-            'provider' => 'deprixa',
+            'provider' => 'masarx',
             'event' => 'tracking.updated',
             'callback_url' => 'https://example.com/tracking',
             'secret' => Crypt::encryptString('sec'),

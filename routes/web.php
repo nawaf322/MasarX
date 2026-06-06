@@ -96,7 +96,7 @@ Route::middleware(['auth', 'verified', \App\Http\Middleware\CheckTenant::class, 
         Route::get('/customers/export', [\App\Http\Controllers\CustomerController::class, 'export'])->name('customers.export');
         Route::get('/customers/import-template', [\App\Http\Controllers\CustomerController::class, 'importTemplate'])->name('customers.import.template');
         Route::post('/customers/import', [\App\Http\Controllers\CustomerController::class, 'import'])->name('customers.import');
-        Route::post('/customers/import-deprixa-pro', [\App\Http\Controllers\CustomerController::class, 'importDeprixaPro'])->middleware('throttle:5,1')->name('customers.import.deprixa-pro');
+        Route::post('/customers/import-masarx-pro', [\App\Http\Controllers\CustomerController::class, 'importMasarXPro'])->middleware('throttle:5,1')->name('customers.import.masarx-pro');
         Route::get('/api/customers/search', [\App\Http\Controllers\CustomerController::class, 'searchApi'])->name('api.customers.search');
         Route::post('/api/customers/quick-create', [\App\Http\Controllers\CustomerController::class, 'quickCreateApi'])->name('api.customers.quick-create');
         Route::match(['put', 'patch'], '/api/customers/{id}', [\App\Http\Controllers\CustomerController::class, 'updateApi'])->name('api.customers.update');
@@ -566,7 +566,7 @@ Route::middleware(['auth', 'verified', \App\Http\Middleware\CheckTenant::class, 
         Route::get('/', [\App\Http\Controllers\ImportController::class, 'index'])->name('index');
         Route::get('/template', [\App\Http\Controllers\ImportController::class, 'template'])->name('template');
         Route::post('/', [\App\Http\Controllers\ImportController::class, 'store'])->name('store');
-        Route::post('/deprixa-pro', [\App\Http\Controllers\ImportController::class, 'importDeprixaPro'])->middleware('throttle:5,1')->name('deprixa-pro');
+        Route::post('/masarx-pro', [\App\Http\Controllers\ImportController::class, 'importMasarXPro'])->middleware('throttle:5,1')->name('masarx-pro');
         Route::get('/{importJob}', [\App\Http\Controllers\ImportController::class, 'show'])->name('show');
         Route::delete('/{importJob}', [\App\Http\Controllers\ImportController::class, 'destroy'])->name('destroy');
     });
@@ -638,6 +638,12 @@ Route::middleware(['auth', 'verified', \App\Http\Middleware\CheckTenant::class, 
         Route::post('/recharge', [\App\Http\Controllers\CustomerWalletController::class, 'processRecharge'])->name('recharge.store');
     });
 
+    // ─── Moyasar payment gateway ─────────────────────────────────────────────
+    Route::post('/moyasar/recharge', [\App\Http\Controllers\MoyasarController::class, 'rechargeInitiate'])->name('moyasar.recharge.initiate');
+    Route::get('/moyasar/recharge/callback', [\App\Http\Controllers\MoyasarController::class, 'rechargeCallback'])->name('moyasar.recharge.callback');
+    Route::post('/moyasar/shipments/{shipment}/pay', [\App\Http\Controllers\MoyasarController::class, 'shipmentPayInitiate'])->name('moyasar.shipment.pay');
+    Route::get('/moyasar/shipments/{shipment}/callback', [\App\Http\Controllers\MoyasarController::class, 'shipmentPayCallback'])->name('moyasar.shipment.callback');
+
     // ─── My Shipments (customer self-service) ─────────────────────────────────
     Route::get('/my-shipments', [\App\Http\Controllers\CustomerPortalController::class, 'shipments'])->name('my-shipments.index');
 
@@ -664,7 +670,7 @@ Route::middleware(['auth', 'verified', \App\Http\Middleware\CheckTenant::class, 
     // ─── Pre-Alerts (Prealerta de paquetes / casillero) ────────────────────────
     Route::prefix('pre-alerts')->name('pre-alerts.')->middleware('can:pre-alerts.view')->group(function () {
         Route::get('/',                              [\App\Http\Controllers\PreAlertController::class, 'index'])->name('index');
-        Route::post('/import-deprixa-pro',           [\App\Http\Controllers\PreAlertController::class, 'importDeprixaPro'])->name('import-deprixa-pro')->middleware('can:pre-alerts.create');
+        Route::post('/import-masarx-pro',           [\App\Http\Controllers\PreAlertController::class, 'importMasarXPro'])->name('import-masarx-pro')->middleware('can:pre-alerts.create');
         Route::post('/bulk-cancel',                  [\App\Http\Controllers\PreAlertController::class, 'bulkCancel'])->name('bulk-cancel')->middleware('can:pre-alerts.manage');
         Route::post('/bulk-destroy',                 [\App\Http\Controllers\PreAlertController::class, 'bulkDestroy'])->name('bulk-destroy')->middleware('can:pre-alerts.manage');
         Route::get('/create',                        [\App\Http\Controllers\PreAlertController::class, 'create'])->name('create')->middleware('can:pre-alerts.create');

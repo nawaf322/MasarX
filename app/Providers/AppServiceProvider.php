@@ -23,6 +23,9 @@ class AppServiceProvider extends ServiceProvider
 
         // ShipmentStateMachine is stateless — singleton is safe and avoids re-construction
         $this->app->singleton(\App\Services\ShipmentStateMachine::class);
+
+        // MoyasarService holds no mutable state — singleton avoids repeated config reads
+        $this->app->singleton(\App\Services\MoyasarService::class);
     }
 
     public function boot(): void

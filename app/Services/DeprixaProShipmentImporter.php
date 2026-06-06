@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 /**
- * Parses phpMyAdmin SQL dumps from Deprixa Pro and imports shipments.
+ * Parses phpMyAdmin SQL dumps from MasarX Pro and imports shipments.
  *
  * Required:  cdb_add_order
  * Optional:  cdb_add_order_item  → package dimensions / content
@@ -16,16 +16,16 @@ use Illuminate\Support\Str;
  *            cdb_senders_addresses → address, zip, location IDs
  *            cdb_country / cdb_state / cdb_city → location name resolution
  *
- * Workflow:  Import customers first via /customers → Deprixa Pro tab,
+ * Workflow:  Import customers first via /customers → MasarX Pro tab,
  *            then run this importer so new-system users can be matched by email.
  */
-class DeprixaProShipmentImporter
+class MasarXProShipmentImporter
 {
     private string $sql;
     private int    $orgId;
     private int    $createdBy;
 
-    // Deprixa Pro status_courier → new system status
+    // MasarX Pro status_courier → new system status
     private const STATUS_MAP = [
         1 => 'pending',
         2 => 'processed',
@@ -36,7 +36,7 @@ class DeprixaProShipmentImporter
         7 => 'exception',
     ];
 
-    // Deprixa Pro status_invoice → new system payment_status
+    // MasarX Pro status_invoice → new system payment_status
     private const PAYMENT_MAP = [
         1 => 'paid',
         2 => 'unpaid',
@@ -462,7 +462,7 @@ class DeprixaProShipmentImporter
     }
 
     // ──────────────────────────────────────────────────────────────────────────
-    // SQL PARSER  (same state-machine as DeprixaProImporter)
+    // SQL PARSER  (same state-machine as MasarXProImporter)
     // ──────────────────────────────────────────────────────────────────────────
 
     private function parseTable(string $tableName): array

@@ -122,7 +122,7 @@ class HandleInertiaRequests extends Middleware
 
 
                 return [
-                    'app_name' => config('app.name', 'Deprixa Lite'),
+                    'app_name' => config('app.name', 'MasarX Lite'),
                     'security_locked' => $isLocked,
                     'primary_color' => $org?->primary_color ?? '#4F46E5',
                     'secondary_color' => $org?->secondary_color ?? '#10B981',

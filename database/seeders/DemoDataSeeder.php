@@ -72,28 +72,28 @@ class DemoDataSeeder extends Seeder
         $demoUsers = [
             [
                 'name'     => 'Admin Demo',
-                'email'    => 'admin@demo.deprixa.com',
+                'email'    => 'admin@demo.masarx.com',
                 'password' => 'demo1234',
                 'role'     => 'admin',
                 'phone'    => '+1 800 100 0001',
             ],
             [
                 'name'     => 'Employee Demo',
-                'email'    => 'employee@demo.deprixa.com',
+                'email'    => 'employee@demo.masarx.com',
                 'password' => 'demo1234',
                 'role'     => 'Employee',
                 'phone'    => '+1 800 100 0002',
             ],
             [
                 'name'     => 'Driver Demo',
-                'email'    => 'driver@demo.deprixa.com',
+                'email'    => 'driver@demo.masarx.com',
                 'password' => 'demo1234',
                 'role'     => 'Driver',
                 'phone'    => '+1 800 100 0003',
             ],
             [
                 'name'     => 'Customer Demo',
-                'email'    => 'customer@demo.deprixa.com',
+                'email'    => 'customer@demo.masarx.com',
                 'password' => 'demo1234',
                 'role'     => 'customer',
                 'phone'    => '+1 800 100 0004',

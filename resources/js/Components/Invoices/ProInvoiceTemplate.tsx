@@ -155,7 +155,7 @@ export default function ProInvoiceTemplate({
                         {/* Brand Mark */}
                         <div className="w-[14px] h-[48px] rounded-[4px] bg-[var(--accent)] shadow-[inset_0_0_0_2px_rgba(255,255,255,0.2)] print-color-adjust-exact"></div>
                         <div>
-                            <h1 className="text-xl font-bold tracking-tight m-0 text-white">{organization?.name || 'DeprixaPlus'} · {t('invoice.title')}</h1>
+                            <h1 className="text-xl font-bold tracking-tight m-0 text-white">{organization?.name || 'MasarXPlus'} · {t('invoice.title')}</h1>
                             <div className="text-xs opacity-90 mt-1 text-white">{organization?.tagline || organization?.legal_name || t('invoice.brand_tagline')}</div>
                         </div>
                     </div>

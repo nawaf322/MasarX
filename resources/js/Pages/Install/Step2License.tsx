@@ -134,7 +134,7 @@ export default function Step2License({ currentStep }: Props) {
                                     </button>
                                 )}
                                 <a
-                                    href="https://tickets.deprixapro.site/"
+                                    href="https://tickets.masarxpro.site/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="text-xs px-3 py-1 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-md font-medium transition-colors"

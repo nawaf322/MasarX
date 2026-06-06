@@ -200,7 +200,7 @@ class InvoiceParserService
         }
 
         $escaped    = escapeshellarg($path);
-        $tmpOut     = sys_get_temp_dir() . '/deprixa_ocr_' . uniqid();
+        $tmpOut     = sys_get_temp_dir() . '/masarx_ocr_' . uniqid();
         $escapedOut = escapeshellarg($tmpOut);
         shell_exec("{$tesseract} {$escaped} {$escapedOut} -l eng 2>/dev/null");
         $result = @file_get_contents($tmpOut . '.txt');

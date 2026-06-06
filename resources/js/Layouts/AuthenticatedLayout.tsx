@@ -210,7 +210,7 @@ export default function AuthenticatedLayout({ children }: PropsWithChildren) {
     const bgStyle = isDark ? undefined : { backgroundColor: layoutBg };
 
     return (
-        <ThemeProvider defaultTheme={branding.ui_theme || 'system'} storageKey="deprixa-theme">
+        <ThemeProvider defaultTheme={branding.ui_theme || 'system'} storageKey="masarx-theme">
             <div className="min-h-screen flex w-full transition-colors duration-300 relative" style={bgStyle}>
                 {!branding.security_locked && (
                     <Sidebar isCollapsed={effectiveCollapsed} toggleCollapse={toggleCollapse} />

@@ -164,7 +164,7 @@ export default function Company({ settings = {}, countries = [], states: allStat
                             <Input
                                 value={formData.name}
                                 onChange={e => setFormData(prev => ({ ...prev, name: e.target.value }))}
-                                placeholder="Ej. Deprixa Logistics"
+                                placeholder="Ej. MasarX Logistics"
                                 className={`bg-gray-50/50 border-gray-200 focus:bg-white transition-all ${errors.name ? 'border-red-500 focus-visible:ring-red-500' : ''}`}
                             />
                             {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
@@ -174,7 +174,7 @@ export default function Company({ settings = {}, countries = [], states: allStat
                             <Input
                                 value={formData.legal_name}
                                 onChange={e => setFormData(prev => ({ ...prev, legal_name: e.target.value }))}
-                                placeholder="Ej. Deprixa SAS"
+                                placeholder="Ej. MasarX SAS"
                                 className={`bg-gray-50/50 border-gray-200 focus:bg-white transition-all ${errors.legal_name ? 'border-red-500 focus-visible:ring-red-500' : ''}`}
                             />
                             {errors.legal_name && <p className="text-red-500 text-xs mt-1">{errors.legal_name}</p>}

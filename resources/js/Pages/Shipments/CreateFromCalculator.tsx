@@ -399,9 +399,9 @@ export default function CreateFromCalculator({
 
         // 2. localStorage prefill (from authenticated internal calculator)
         try {
-            const raw = localStorage.getItem('deprixa_calculator_prefill');
+            const raw = localStorage.getItem('masarx_calculator_prefill');
             if (raw) {
-                localStorage.removeItem('deprixa_calculator_prefill');
+                localStorage.removeItem('masarx_calculator_prefill');
                 const cp = JSON.parse(raw);
 
                 if (cp.sender_details) {
@@ -435,7 +435,7 @@ export default function CreateFromCalculator({
                 if (cp.rate_data)    setData('rate_data',    cp.rate_data);
                 return;
             }
-        } catch { localStorage.removeItem('deprixa_calculator_prefill'); }
+        } catch { localStorage.removeItem('masarx_calculator_prefill'); }
 
         // No prefill found
         setPrefillError(true);

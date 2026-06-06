@@ -24,7 +24,7 @@ export function EditionBadge({ className = '' }: Props) {
     return (
         <span
             className={`inline-flex items-center rounded px-1.5 py-0.5 text-[10px] font-bold tracking-wider ${colorClass} ${className}`}
-            title={`Deprixa ${current} edition`}
+            title={`MasarX ${current} edition`}
         >
             {upper}
         </span>

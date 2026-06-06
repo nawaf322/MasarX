@@ -48,8 +48,8 @@ class DatabaseSeeder extends Seeder
 
         // Crear organización por defecto y asignarla al admin (evita organization_id null)
         $org = Organization::firstOrCreate(
-            ['slug' => 'deprixa-global'],
-            ['name' => 'Deprixa Global', 'primary_color' => '#E5325A', 'is_active' => true, 'settings' => []]
+            ['slug' => 'masarx'],
+            ['name' => 'MasarX', 'primary_color' => '#FF6B4A', 'is_active' => true, 'settings' => []]
         );
 
         $this->call([RatesSeeder::class]);
@@ -57,23 +57,23 @@ class DatabaseSeeder extends Seeder
         // Solo crear usuario de prueba en ambientes de desarrollo
         // En producción, los usuarios deben crearse desde Settings > Users
         if (app()->environment(['local', 'development', 'testing'])) {
-            $testPassword = env('TEST_USER_PASSWORD', 'Deprixa2026!');
-            $existing = \App\Models\User::where('email', 'admin@deprixa.com')->first();
+            $testPassword = env('TEST_USER_PASSWORD', 'MasarX2026!');
+            $existing = \App\Models\User::where('email', 'admin@masarx.com')->first();
             if (!$existing) {
                 $user = \App\Models\User::factory()->create([
-                    'name' => 'Deprixa Admin',
-                    'email' => 'admin@deprixa.com',
+                    'name' => 'MasarX Admin',
+                    'email' => 'admin@masarx.com',
                     'password' => bcrypt($testPassword),
                     'organization_id' => $org->id,
                     'must_change_password' => false,
                 ]);
                 $user->assignRole('super-admin');
-                $this->command->info("Admin user created: admin@deprixa.com / password: {$testPassword}");
+                $this->command->info("Admin user created: admin@masarx.com / password: {$testPassword}");
             } else {
                 if (!$existing->hasRole('super-admin')) {
                     $existing->assignRole('super-admin');
                 }
-                $this->command->info("Admin user already exists: admin@deprixa.com");
+                $this->command->info("Admin user already exists: admin@masarx.com");
             }
         } else {
             $this->command->info("Skipping test user creation in production. Create users from Settings > Users.");

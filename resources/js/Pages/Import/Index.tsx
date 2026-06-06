@@ -70,17 +70,17 @@ function ImportResultBlock({ result }: { result: ImportResult }) {
         <div className="rounded-lg border border-green-200 bg-green-50 p-4 space-y-2 text-sm">
             <div className="flex items-center gap-2 font-medium text-green-800">
                 <CheckCircle2 className="w-4 h-4" />
-                {t('import.deprixa_pro_imported', { count: String(result.imported ?? 0) })}
+                {t('import.masarx_pro_imported', { count: String(result.imported ?? 0) })}
                 {(result.skipped ?? 0) > 0 && (
                     <span className="text-yellow-700 font-normal ml-1">
-                        {t('import.deprixa_pro_skipped', { count: String(result.skipped ?? 0) })}
+                        {t('import.masarx_pro_skipped', { count: String(result.skipped ?? 0) })}
                     </span>
                 )}
             </div>
             {result.skipped_rows && result.skipped_rows.length > 0 && (
                 <details className="text-xs text-muted-foreground">
                     <summary className="cursor-pointer font-medium text-yellow-700">
-                        {t('import.deprixa_pro_skipped_rows')} ({result.skipped_rows.length})
+                        {t('import.masarx_pro_skipped_rows')} ({result.skipped_rows.length})
                     </summary>
                     <ul className="mt-1 space-y-0.5 pl-2 border-l-2 border-yellow-300">
                         {result.skipped_rows.slice(0, 50).map((r, i) => <li key={i}>{r}</li>)}
@@ -92,8 +92,8 @@ function ImportResultBlock({ result }: { result: ImportResult }) {
     );
 }
 
-// ── Deprixa Pro SQL Tab ────────────────────────────────────────────────────────
-function DeprixaProTab() {
+// ── MasarX Pro SQL Tab ────────────────────────────────────────────────────────
+function MasarXProTab() {
     const { t } = useTranslation();
     const fileRef = useRef<HTMLInputElement>(null);
     const [files, setFiles] = useState<File[]>([]);
@@ -127,7 +127,7 @@ function DeprixaProTab() {
         files.forEach(f => data.append('files[]', f));
 
         try {
-            const res = await axios.post(route('import.deprixa-pro'), data, {
+            const res = await axios.post(route('import.masarx-pro'), data, {
                 headers: { 'Content-Type': 'multipart/form-data' },
             });
             setResult(res.data);
@@ -143,13 +143,13 @@ function DeprixaProTab() {
     };
 
     const fileDescriptions: Record<string, string> = {
-        'cdb_add_order':           t('import.deprixa_pro_file_orders'),
-        'cdb_add_order_item':      t('import.deprixa_pro_file_items'),
-        'cdb_users':               t('import.deprixa_pro_file_users'),
-        'cdb_senders_addresses':   t('import.deprixa_pro_file_addresses'),
-        'cdb_country':             t('import.deprixa_pro_file_location'),
-        'cdb_state':               t('import.deprixa_pro_file_location'),
-        'cdb_city':                t('import.deprixa_pro_file_location'),
+        'cdb_add_order':           t('import.masarx_pro_file_orders'),
+        'cdb_add_order_item':      t('import.masarx_pro_file_items'),
+        'cdb_users':               t('import.masarx_pro_file_users'),
+        'cdb_senders_addresses':   t('import.masarx_pro_file_addresses'),
+        'cdb_country':             t('import.masarx_pro_file_location'),
+        'cdb_state':               t('import.masarx_pro_file_location'),
+        'cdb_city':                t('import.masarx_pro_file_location'),
     };
 
     const guessDesc = (filename: string): string => {
@@ -168,16 +168,16 @@ function DeprixaProTab() {
                     <AlertTriangle className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
                     <div className="text-sm">
                         <p className="font-semibold text-amber-800 dark:text-amber-200 mb-1">
-                            {t('import.deprixa_pro_prerequisite_title')}
+                            {t('import.masarx_pro_prerequisite_title')}
                         </p>
                         <p className="text-amber-700 dark:text-amber-300 mb-2">
-                            {t('import.deprixa_pro_prerequisite_body')}
+                            {t('import.masarx_pro_prerequisite_body')}
                         </p>
                         <a
                             href={route('customers.index')}
                             className="inline-flex items-center gap-1 text-amber-800 dark:text-amber-200 underline font-medium text-xs"
                         >
-                            {t('import.deprixa_pro_go_customers')}
+                            {t('import.masarx_pro_go_customers')}
                             <ExternalLink className="w-3 h-3" />
                         </a>
                     </div>
@@ -187,11 +187,11 @@ function DeprixaProTab() {
             {/* File description legend */}
             <div className="rounded-lg border border-gray-200 dark:border-gray-700 divide-y divide-gray-100 dark:divide-gray-700 text-xs">
                 {[
-                    { key: 'cdb_add_order.sql',         badge: 'required'    as const, desc: t('import.deprixa_pro_file_orders') },
-                    { key: 'cdb_users.sql',             badge: 'recommended' as const, desc: t('import.deprixa_pro_file_users_optional') },
-                    { key: 'cdb_add_order_item.sql',    badge: 'optional'    as const, desc: t('import.deprixa_pro_file_items') },
-                    { key: 'cdb_senders_addresses.sql', badge: 'optional'    as const, desc: t('import.deprixa_pro_file_addresses') },
-                    { key: 'cdb_country/state/city.sql',badge: 'optional'    as const, desc: t('import.deprixa_pro_file_location') },
+                    { key: 'cdb_add_order.sql',         badge: 'required'    as const, desc: t('import.masarx_pro_file_orders') },
+                    { key: 'cdb_users.sql',             badge: 'recommended' as const, desc: t('import.masarx_pro_file_users_optional') },
+                    { key: 'cdb_add_order_item.sql',    badge: 'optional'    as const, desc: t('import.masarx_pro_file_items') },
+                    { key: 'cdb_senders_addresses.sql', badge: 'optional'    as const, desc: t('import.masarx_pro_file_addresses') },
+                    { key: 'cdb_country/state/city.sql',badge: 'optional'    as const, desc: t('import.masarx_pro_file_location') },
                 ].map(row => (
                     <div key={row.key} className="flex items-center gap-3 px-3 py-2">
                         <FileText className="w-3.5 h-3.5 text-gray-400 shrink-0" />
@@ -199,7 +199,7 @@ function DeprixaProTab() {
                         {row.badge === 'required'
                             ? <span className="px-1.5 py-0.5 rounded bg-red-100 text-red-700 text-[10px] font-semibold shrink-0">REQUIRED</span>
                             : row.badge === 'recommended'
-                            ? <span className="px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-semibold shrink-0">{t('import.deprixa_pro_recommended')}</span>
+                            ? <span className="px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-semibold shrink-0">{t('import.masarx_pro_recommended')}</span>
                             : <span className="px-1.5 py-0.5 rounded bg-gray-100 text-gray-500 text-[10px] shrink-0">optional</span>
                         }
                         <span className="text-gray-500 hidden sm:block">{row.desc}</span>
@@ -217,8 +217,8 @@ function DeprixaProTab() {
                     onClick={() => fileRef.current?.click()}
                 >
                     <Database className="w-10 h-10 mx-auto mb-2 text-orange-400" />
-                    <p className="text-sm text-muted-foreground">{t('import.deprixa_pro_drop')}</p>
-                    <p className="text-xs text-muted-foreground mt-1">{t('import.deprixa_pro_multi')}</p>
+                    <p className="text-sm text-muted-foreground">{t('import.masarx_pro_drop')}</p>
+                    <p className="text-xs text-muted-foreground mt-1">{t('import.masarx_pro_multi')}</p>
                     <input
                         ref={fileRef}
                         type="file"
@@ -250,7 +250,7 @@ function DeprixaProTab() {
                 {missingRequired && (
                     <div className="rounded-lg border border-red-200 bg-red-50 p-3 text-xs text-red-700 flex gap-2">
                         <XCircle className="w-4 h-4 shrink-0 mt-0.5" />
-                        <span>{t('import.deprixa_pro_missing_required')}</span>
+                        <span>{t('import.masarx_pro_missing_required')}</span>
                     </div>
                 )}
 
@@ -262,7 +262,7 @@ function DeprixaProTab() {
                     {submitting ? (
                         <><RefreshCw className="w-4 h-4 mr-2 animate-spin" />{t('common.processing')}</>
                     ) : (
-                        <><Upload className="w-4 h-4 mr-2" />{t('import.deprixa_pro_btn')}</>
+                        <><Upload className="w-4 h-4 mr-2" />{t('import.masarx_pro_btn')}</>
                     )}
                 </Button>
             </form>
@@ -374,7 +374,7 @@ function TemplateImportTab({ onImported }: { onImported: () => void }) {
 // ── Main page ─────────────────────────────────────────────────────────────────
 export default function ImportIndex({ importJobs }: Props) {
     const { t } = useTranslation();
-    const [activeTab, setActiveTab] = useState<'template' | 'deprixa'>('template');
+    const [activeTab, setActiveTab] = useState<'template' | 'masarx'>('template');
     const [refreshKey, setRefreshKey] = useState(0);
     const [deletingId, setDeletingId] = useState<number | null>(null);
 
@@ -409,7 +409,7 @@ export default function ImportIndex({ importJobs }: Props) {
 
     const tabs = [
         { key: 'template' as const, label: t('import.tab_template'), icon: <Upload className="w-4 h-4" /> },
-        { key: 'deprixa'  as const, label: t('import.tab_deprixa_pro'), icon: <Database className="w-4 h-4" /> },
+        { key: 'masarx'  as const, label: t('import.tab_masarx_pro'), icon: <Database className="w-4 h-4" /> },
     ];
 
     return (
@@ -452,11 +452,11 @@ export default function ImportIndex({ importJobs }: Props) {
                     </div>
                 )}
 
-                {/* Tab 2: Deprixa Pro SQL */}
-                {activeTab === 'deprixa' && (
+                {/* Tab 2: MasarX Pro SQL */}
+                {activeTab === 'masarx' && (
                     <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
-                        <h2 className="font-medium text-lg mb-4">{t('import.deprixa_pro_title')}</h2>
-                        <DeprixaProTab />
+                        <h2 className="font-medium text-lg mb-4">{t('import.masarx_pro_title')}</h2>
+                        <MasarXProTab />
                     </div>
                 )}
 

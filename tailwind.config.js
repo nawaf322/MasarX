@@ -14,8 +14,28 @@ export default {
         extend: {
             fontFamily: {
                 sans: ['Inter', ...defaultTheme.fontFamily.sans],
+                tajawal: ['Tajawal', 'sans-serif'],
+                sora: ['Sora', 'sans-serif'],
+            },
+            maxWidth: {
+                brand: '1280px',
             },
             colors: {
+                brand: {
+                    primary: '#FF6B4A',
+                    'primary-dark': '#FF512F',
+                    'primary-light': '#FF9B7A',
+                    secondary: '#E2231A',
+                    navy: {
+                        DEFAULT: '#0B1220',
+                        800: '#0E1626',
+                        700: '#141D2E',
+                        600: '#18223A',
+                    },
+                    muted: '#90A0C2',
+                    subtle: '#6A7894',
+                    surface: '#F6F8FC',
+                },
                 border: 'var(--border)',
                 input: 'var(--input)',
                 ring: 'var(--ring)',
@@ -54,6 +74,8 @@ export default {
                 lg: 'var(--radius)',
                 md: 'calc(var(--radius) - 2px)',
                 sm: 'calc(var(--radius) - 4px)',
+                brand: '18px',
+                'brand-sm': '11px',
             },
             keyframes: {
                 'accordion-down': {

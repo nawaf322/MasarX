@@ -60,4 +60,41 @@ return [
         'redirect' => env('GOOGLE_REDIRECT_URI'),
     ],
 
+    // ─── Moyasar (Saudi payment gateway — mada + Apple Pay) ─────────────────
+    'moyasar' => [
+        'publishable_key' => env('MOYASAR_PUBLISHABLE_KEY', ''),
+        'secret_key'      => env('MOYASAR_SECRET_KEY', ''),
+        'webhook_secret'  => env('MOYASAR_WEBHOOK_SECRET', ''),
+    ],
+
+    // ─── Saudi Carriers ──────────────────────────────────────────────────────
+    'aramex' => [
+        'enabled'              => env('ARAMEX_ENABLED', false),
+        'username'             => env('ARAMEX_USERNAME', ''),
+        'password'             => env('ARAMEX_PASSWORD', ''),
+        'version'              => env('ARAMEX_VERSION', 'v1.0'),
+        'pin'                  => env('ARAMEX_PIN', ''),
+        'account_number'       => env('ARAMEX_ACCOUNT_NUMBER', ''),
+        'account_pin'          => env('ARAMEX_ACCOUNT_PIN', ''),
+        'account_entity'       => env('ARAMEX_ACCOUNT_ENTITY', 'RUH'),
+        'account_country_code' => env('ARAMEX_ACCOUNT_COUNTRY_CODE', 'SA'),
+        'test_mode'            => env('ARAMEX_TEST_MODE', true),
+    ],
+
+    'smsa' => [
+        'enabled'     => env('SMSA_ENABLED', false),
+        'pass_key'    => env('SMSA_PASS_KEY', ''),
+        'sender_code' => env('SMSA_SENDER_CODE', ''),
+        'flat_rate'   => env('SMSA_FLAT_RATE', 25.0),
+        'test_mode'   => env('SMSA_TEST_MODE', true),
+    ],
+
+    'dhl' => [
+        'enabled'        => env('DHL_ENABLED', false),
+        'api_key'        => env('DHL_API_KEY', ''),
+        'api_secret'     => env('DHL_API_SECRET', ''),
+        'account_number' => env('DHL_ACCOUNT_NUMBER', ''),
+        'test_mode'      => env('DHL_TEST_MODE', true),
+    ],
+
 ];

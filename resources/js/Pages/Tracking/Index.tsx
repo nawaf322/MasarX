@@ -72,7 +72,7 @@ export default function TrackingIndex({ shipment, trackingNumber, isAuthenticate
                             <div className="w-7 h-7 rounded-lg bg-primary flex items-center justify-center">
                                 <Package className="w-4 h-4 text-white" />
                             </div>
-                            <span className="font-bold text-gray-800 text-sm">Deprixa Plus</span>
+                            <span className="font-bold text-gray-800 text-sm">MasarX</span>
                         </div>
                         <div className="flex gap-2">
                             <Link href={route('login')} className="px-3 py-1.5 text-xs font-medium text-gray-600 hover:text-gray-900 transition">

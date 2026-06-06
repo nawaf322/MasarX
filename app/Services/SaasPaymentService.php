@@ -233,7 +233,7 @@ class SaasPaymentService
                 'application_context' => [
                     'return_url' => $successUrl,
                     'cancel_url' => $cancelUrl,
-                    'brand_name' => $org->name ?? 'DeprixaPlus',
+                    'brand_name' => $org->name ?? 'MasarXPlus',
                 ],
             ]);
 

@@ -101,7 +101,7 @@ function ImportModal({ open, onClose, onSuccess }: {
     onSuccess: () => void;
 }) {
     const { t } = useTranslation();
-    type Tab = 'template' | 'deprixa_pro';
+    type Tab = 'template' | 'masarx_pro';
     const [tab, setTab] = useState<Tab>('template');
 
     // ── Tab 1: CSV/XLSX template ──
@@ -110,7 +110,7 @@ function ImportModal({ open, onClose, onSuccess }: {
     const [result, setResult]   = useState<ImportResult | null>(null);
     const [loading, setLoading] = useState(false);
 
-    // ── Tab 2: Deprixa Pro SQL ──
+    // ── Tab 2: MasarX Pro SQL ──
     const sqlRef   = useRef<HTMLInputElement>(null);
     const [sqlFiles, setSqlFiles]     = useState<File[]>([]);
     const [sqlResult, setSqlResult]   = useState<ImportResult | null>(null);
@@ -154,7 +154,7 @@ function ImportModal({ open, onClose, onSuccess }: {
         const form = new FormData();
         sqlFiles.forEach(f => form.append('files[]', f));
         try {
-            const res = await axios.post(route('customers.import.deprixa-pro'), form, {
+            const res = await axios.post(route('customers.import.masarx-pro'), form, {
                 headers: { 'Content-Type': 'multipart/form-data' },
             });
             setSqlResult(res.data);
@@ -199,15 +199,15 @@ function ImportModal({ open, onClose, onSuccess }: {
                         {t('customers.import_tab_template')}
                     </button>
                     <button
-                        onClick={() => { setTab('deprixa_pro'); setResult(null); setSqlResult(null); }}
+                        onClick={() => { setTab('masarx_pro'); setResult(null); setSqlResult(null); }}
                         className={`flex-1 flex items-center justify-center gap-2 py-3 text-sm font-medium transition-colors ${
-                            tab === 'deprixa_pro'
+                            tab === 'masarx_pro'
                                 ? 'border-b-2 border-orange-500 text-orange-700 dark:text-orange-400'
                                 : 'text-muted-foreground hover:text-gray-700 dark:hover:text-gray-300'
                         }`}
                     >
                         <Database className="h-4 w-4" />
-                        {t('customers.import_tab_deprixa_pro')}
+                        {t('customers.import_tab_masarx_pro')}
                     </button>
                 </div>
 
@@ -251,16 +251,16 @@ function ImportModal({ open, onClose, onSuccess }: {
                         </>
                     )}
 
-                    {/* ── TAB 2: Deprixa Pro SQL ── */}
-                    {tab === 'deprixa_pro' && (
+                    {/* ── TAB 2: MasarX Pro SQL ── */}
+                    {tab === 'masarx_pro' && (
                         <>
                             {/* Info box */}
                             <div className="p-3 bg-orange-50 dark:bg-orange-950/30 rounded-lg border border-orange-200 dark:border-orange-800 text-sm text-orange-800 dark:text-orange-300 space-y-1">
-                                <p className="font-semibold flex items-center gap-1.5"><Database className="h-4 w-4" />{t('customers.import_deprixa_pro_title')}</p>
-                                <p className="text-xs">{t('customers.import_deprixa_pro_hint')}</p>
+                                <p className="font-semibold flex items-center gap-1.5"><Database className="h-4 w-4" />{t('customers.import_masarx_pro_title')}</p>
+                                <p className="text-xs">{t('customers.import_masarx_pro_hint')}</p>
                                 <ul className="text-xs space-y-0.5 mt-1 list-disc list-inside text-orange-700 dark:text-orange-400">
-                                    <li><code className="bg-orange-100 dark:bg-orange-900/40 px-1 rounded">cdb_users.sql</code> — {t('customers.import_deprixa_pro_file1')}</li>
-                                    <li><code className="bg-orange-100 dark:bg-orange-900/40 px-1 rounded">cdb_senders_addresses.sql</code> — {t('customers.import_deprixa_pro_file2')}</li>
+                                    <li><code className="bg-orange-100 dark:bg-orange-900/40 px-1 rounded">cdb_users.sql</code> — {t('customers.import_masarx_pro_file1')}</li>
+                                    <li><code className="bg-orange-100 dark:bg-orange-900/40 px-1 rounded">cdb_senders_addresses.sql</code> — {t('customers.import_masarx_pro_file2')}</li>
                                 </ul>
                             </div>
 
@@ -284,8 +284,8 @@ function ImportModal({ open, onClose, onSuccess }: {
                                 ) : (
                                     <div className="flex flex-col items-center gap-2">
                                         <Database className="h-8 w-8 text-gray-400" />
-                                        <p className="text-sm text-gray-600 dark:text-gray-400">{t('customers.import_deprixa_pro_drop')}</p>
-                                        <p className="text-xs text-muted-foreground">.sql · {t('customers.import_deprixa_pro_multi')}</p>
+                                        <p className="text-sm text-gray-600 dark:text-gray-400">{t('customers.import_masarx_pro_drop')}</p>
+                                        <p className="text-xs text-muted-foreground">.sql · {t('customers.import_masarx_pro_multi')}</p>
                                     </div>
                                 )}
                             </div>

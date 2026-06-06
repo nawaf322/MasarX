@@ -3,7 +3,7 @@
  * UPDATE SERVER — Host this on YOUR server (not distributed with the product).
  *
  * This file is a reference implementation. Deploy it on your own server
- * (e.g. updates.deprixa.com) and point config/version.php > update_server to it.
+ * (e.g. updates.masarx.com) and point config/version.php > update_server to it.
  *
  * Endpoints:
  *   POST /api/check    — verify license + return latest version info
@@ -41,7 +41,7 @@ function handleCheck(array $body): array
 
     // Optional: verify the item ID matches YOUR product
     // if (($sale['item']['id'] ?? null) !== YOUR_ITEM_ID) {
-    //     return ['error' => 'This code is not for Deprixa.'];
+    //     return ['error' => 'This code is not for MasarX.'];
     // }
 
     // 2. Get latest version info from your releases manifest
@@ -69,7 +69,7 @@ function handleDownload(array $body): void
         return;
     }
 
-    $zipPath = __DIR__ . "/releases/deprixa-{$version}.zip";
+    $zipPath = __DIR__ . "/releases/masarx-{$version}.zip";
     if (!file_exists($zipPath)) {
         http_response_code(404);
         echo json_encode(['error' => 'Release file not found.']);
@@ -128,8 +128,8 @@ function verifyDownloadToken(string $token, string $purchaseCode): ?string
  * }
  *
  * releases/ folder:
- *   deprixa-1.1.0.zip
- *   deprixa-1.2.0.zip
+ *   masarx-1.1.0.zip
+ *   masarx-1.2.0.zip
  *   manifest.json
  *
  * What goes in the zip:

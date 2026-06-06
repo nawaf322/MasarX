@@ -39,7 +39,7 @@ class BusinessLogicSeeder extends Seeder
         $org = Organization::first();
         if (!$org) {
             $org = Organization::create([
-                'name' => 'Deprixa Global',
+                'name' => 'MasarX',
                 'primary_color' => '#E5325A'
             ]);
         }
@@ -65,7 +65,7 @@ class BusinessLogicSeeder extends Seeder
         // NOTA: Solo crear driver en ambiente de desarrollo
         // En producción, los drivers deben crearse desde Settings > Users
         if (app()->environment(['local', 'development', 'testing'])) {
-            $driverEmail = 'driver@deprixa.com';
+            $driverEmail = 'driver@masarx.com';
             $driver = null;
 
             try {

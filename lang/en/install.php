@@ -10,7 +10,7 @@ return [
     'finalizing'                => 'Finalizing installation…',
 
     // Step 1 — Welcome
-    'welcome_title'             => 'Welcome to Deprixa Plus',
+    'welcome_title'             => 'Welcome to MasarX',
     'welcome_subtitle'          => 'Before we begin, let\'s make sure your server meets all requirements.',
     'welcome_subtitle2'         => 'All checks must pass before you can proceed.',
     'checking_requirements'     => 'Checking requirements…',
@@ -18,7 +18,7 @@ return [
 
     // Step 2 — License
     'license_title'             => 'License Verification',
-    'license_subtitle'          => 'Enter your Envato purchase code to activate Deprixa Plus.',
+    'license_subtitle'          => 'Enter your Envato purchase code to activate MasarX.',
     'purchase_code'             => 'Purchase code',
     'purchase_code_help'        => 'Where is my purchase code?',
     'envato_username'           => 'Envato username',

@@ -1,3 +1,6 @@
+/* MasarX Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&family=Sora:wght@400;500;600;700;800&display=swap');
+
 @import 'tailwindcss';
 
 @plugin 'tailwindcss-animate';
@@ -55,6 +58,28 @@
     --color-sidebar-border: var(--sidebar-border);
     --color-sidebar-ring: var(--sidebar-ring);
 }
+
+:root {
+  --color-primary: #FF6B4A;
+  --color-primary-dark: #FF512F;
+  --color-primary-light: #FF9B7A;
+  --color-secondary: #E2231A;
+  --color-navy: #0B1220;
+  --color-navy-800: #0E1626;
+  --color-navy-700: #141D2E;
+  --color-navy-600: #18223A;
+  --color-text-muted: #90A0C2;
+  --color-text-subtle: #6A7894;
+  --color-surface: #F6F8FC;
+  --radius-brand: 18px;
+  --radius-brand-sm: 11px;
+  --font-arabic: 'Tajawal', sans-serif;
+  --font-english: 'Sora', sans-serif;
+}
+
+/* Apply Tajawal to RTL content, Sora to LTR */
+[lang="ar"], [dir="rtl"] { font-family: var(--font-arabic); }
+body { font-family: var(--font-english); }
 
 :root {
     --radius: 0.625rem;

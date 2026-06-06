@@ -23,7 +23,7 @@ export default function CreateShipmentWizard() {
     const paymentMethods = pageProps.paymentMethods || [
         { id: 'manual', label: 'Pago manual', enabled: true },
     ];
-    const DRAFT_KEY = 'deprixa_shipment_draft';
+    const DRAFT_KEY = 'masarx_shipment_draft';
     const DRAFT_MAX_AGE_MS = 24 * 60 * 60 * 1000; // 24 horas
 
     const [currentStep, setCurrentStep] = useState(1);
@@ -110,9 +110,9 @@ export default function CreateShipmentWizard() {
 
         // Calculator prefill — highest priority, clears any existing draft
         try {
-            const calcRaw = localStorage.getItem('deprixa_calculator_prefill');
+            const calcRaw = localStorage.getItem('masarx_calculator_prefill');
             if (calcRaw) {
-                localStorage.removeItem('deprixa_calculator_prefill');
+                localStorage.removeItem('masarx_calculator_prefill');
                 try { localStorage.removeItem(DRAFT_KEY); } catch {}
                 const cp = JSON.parse(calcRaw);
                 if (cp.sender_details)   setData('sender_details',   { ...data.sender_details,   ...cp.sender_details });
@@ -122,7 +122,7 @@ export default function CreateShipmentWizard() {
                 if (cp.rate_data)        setData('rate_data',        cp.rate_data);
                 return;
             }
-        } catch { localStorage.removeItem('deprixa_calculator_prefill'); }
+        } catch { localStorage.removeItem('masarx_calculator_prefill'); }
 
         const prefill = pageProps.prefillCustomer as any;
         if (prefill) {

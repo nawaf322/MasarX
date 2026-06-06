@@ -15,7 +15,7 @@ export default function PublicLayout({ children, orgName, orgLogo }: Props) {
     const isAuth = !!auth?.user;
     const branding = (props as any).branding || {};
 
-    const displayName = orgName || branding.app_name || 'Deprixa';
+    const displayName = orgName || branding.app_name || 'MasarX';
     // orgLogo comes from the controller already resolved via Storage::url()
     const displayLogo = orgLogo || branding.logo_url || null;
 

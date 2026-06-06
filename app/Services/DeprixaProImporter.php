@@ -10,15 +10,15 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 /**
- * Parses a phpMyAdmin SQL dump from Deprixa Pro and imports
- * userlevel=1 (customers) into the deprixa-plus users table.
+ * Parses a phpMyAdmin SQL dump from MasarX Pro and imports
+ * userlevel=1 (customers) into the masarx-plus users table.
  *
  * Handles:
  *   - cdb_users              → name, email, password, phone, document, gender
  *   - cdb_senders_addresses  → address, zip_code, country/state/city (optional)
  *   - cdb_country / cdb_state / cdb_city  → location name resolution (optional)
  */
-class DeprixaProImporter
+class MasarXProImporter
 {
     private string $sql;
     private int    $orgId;
@@ -36,7 +36,7 @@ class DeprixaProImporter
         $addresses = $this->parseTable('cdb_senders_addresses');
 
         // ── Location reference tables (optional in the uploaded SQL) ───────────
-        // Try both singular and plural table names used by different Deprixa Pro versions.
+        // Try both singular and plural table names used by different MasarX Pro versions.
         $oldCountries = $this->parseTable('cdb_country')   ?: $this->parseTable('cdb_countries');
         $oldStates    = $this->parseTable('cdb_state')     ?: $this->parseTable('cdb_states');
         $oldCities    = $this->parseTable('cdb_city')      ?: $this->parseTable('cdb_cities');

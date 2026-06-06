@@ -281,7 +281,7 @@ class GeocodingService
             }
 
             $response = Http::timeout(10)
-                ->withHeaders(['User-Agent' => 'DeprixaPlus-Dispatch/1.0'])
+                ->withHeaders(['User-Agent' => 'MasarXPlus-Dispatch/1.0'])
                 ->get('https://nominatim.openstreetmap.org/search', $params);
 
             if (!$response->successful()) {

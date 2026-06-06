@@ -424,9 +424,9 @@ class PreAlertController extends Controller
     }
 
     /**
-     * Import pre-alerts from Deprixa Pro SQL dump (cdb_pre_alert + cdb_users).
+     * Import pre-alerts from MasarX Pro SQL dump (cdb_pre_alert + cdb_users).
      */
-    public function importDeprixaPro(Request $request)
+    public function importMasarXPro(Request $request)
     {
         $request->validate([
             'files'   => 'required|array|min:1|max:6',
@@ -460,7 +460,7 @@ class PreAlertController extends Controller
         // - If not included: uses existing DB customers (throws if none exist)
 
         try {
-            $importer = new \App\Services\DeprixaProPreAlertImporter($sqlContent, Auth::user()->organization_id);
+            $importer = new \App\Services\MasarXProPreAlertImporter($sqlContent, Auth::user()->organization_id);
             $result = $importer->import();
         } catch (\Throwable $e) {
             return response()->json(['success' => false, 'message' => 'Import error: ' . $e->getMessage()], 422);

@@ -49,7 +49,7 @@ class AdminExceptionNotification extends Notification implements ShouldQueue
             ->subject("ACTION REQUIRED: Shipment Exception #{$this->shipment->tracking_number}")
             ->view('emails.notification', [
                 'branding' => [
-                    'company_name' => 'Deprixa Admin',
+                    'company_name' => 'MasarX Admin',
                     'primary_color' => '#dc2626' // Red for alert
                 ],
                 'subject' => "Shipment Exception Alert",

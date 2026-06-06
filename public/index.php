@@ -27,7 +27,7 @@ define('LARAVEL_START', microtime(true));
 // PHP version check — fail early with a readable message instead of cryptic 500
 if (PHP_VERSION_ID < 80200) {
     http_response_code(500);
-    die('<h2 style="font-family:sans-serif;color:#dc2626">Deprixa Plus requires PHP 8.2 or higher.</h2>'
+    die('<h2 style="font-family:sans-serif;color:#dc2626">MasarX requires PHP 8.2 or higher.</h2>'
       . '<p style="font-family:sans-serif">Your server is running PHP ' . PHP_VERSION . '. '
       . 'Please change the PHP version to 8.2+ in your hosting control panel.</p>');
 }

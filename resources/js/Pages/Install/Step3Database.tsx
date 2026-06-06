@@ -137,7 +137,7 @@ export default function Step3Database({ currentStep, defaults }: Props) {
                                 <label className={labelClass}>{t('install.db_name_label')}</label>
                                 <input type="text" value={data.db_name}
                                     onChange={(e) => setData('db_name', e.target.value)}
-                                    className={inputClass} placeholder="deprixa_db" />
+                                    className={inputClass} placeholder="masarx_db" />
                                 {errors.db_name && <p className="text-xs text-red-500 mt-1">{errors.db_name}</p>}
                             </div>
                             <div>

@@ -30,7 +30,7 @@ return [
     'current'        => '1.0.0',
 
     // URL of YOUR update server (you host this separately)
-    'update_server'  => env('UPDATE_SERVER_URL', 'https://updates.deprixa.com/api'),
+    'update_server'  => env('UPDATE_SERVER_URL', 'https://updates.masarx.com/api'),
 
     // Files and directories never overwritten during updates
     'exclude_paths'  => [

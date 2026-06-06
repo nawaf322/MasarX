@@ -53,7 +53,7 @@ class UpdateService
         if (empty($result['status'])) {
             // Clean up unformatted sprintf templates from the license server (e.g. "%s has no versions yet.")
             $errMsg = $result['message'] ?? 'Update check failed.';
-            $errMsg = preg_replace('/%s\s*/i', config('app.name', 'Deprixa Plus') . ' ', $errMsg);
+            $errMsg = preg_replace('/%s\s*/i', config('app.name', 'MasarX') . ' ', $errMsg);
             $errMsg = trim($errMsg);
             return ['error' => $errMsg];
         }
@@ -69,7 +69,7 @@ class UpdateService
             // SQL field from LicenseBox is ignored — Laravel migrations handle all DB changes
             'has_sql'          => false,
             'changelog'        => $result['changelog']  ?? '',
-            'message'          => trim(preg_replace('/%s\s*/i', config('app.name', 'Deprixa Plus') . ' ', $result['message'] ?? '')),
+            'message'          => trim(preg_replace('/%s\s*/i', config('app.name', 'MasarX') . ' ', $result['message'] ?? '')),
             // true when update exists but support period has expired
             'license_expired'  => $licExpired,
             // can_download = has update AND support is active

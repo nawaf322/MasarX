@@ -16,7 +16,7 @@ if (typeof window !== 'undefined') {
     (window as any).route = ziggyRoute;
 }
 
-const appName = import.meta.env.VITE_APP_NAME || 'Deprixa Plus';
+const appName = import.meta.env.VITE_APP_NAME || 'MasarX';
 
 // Validation errors (422) - skip generic alert; form shows inline errors
 router.on('error', (event) => {

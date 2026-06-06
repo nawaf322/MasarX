@@ -363,7 +363,7 @@ export default function GeneticAlgorithmSettings({ ga_config, run_history, ai_co
 
                         {/* Info box: what the AI does */}
                         <div className="rounded-lg bg-violet-50 border border-violet-100 p-3 text-xs text-violet-800 space-y-1">
-                            <p className="font-semibold flex items-center gap-1.5"><Cpu className="h-3.5 w-3.5" />{t("genetic_algorithm.ai_what_it_does") || "What the AI does in Deprixa"}</p>
+                            <p className="font-semibold flex items-center gap-1.5"><Cpu className="h-3.5 w-3.5" />{t("genetic_algorithm.ai_what_it_does") || "What the AI does in MasarX"}</p>
                             <ul className="list-disc list-inside space-y-0.5 pl-1">
                                 <li>{t("genetic_algorithm.ai_feature_shipment") || "Shipment risk analysis: delays, exceptions, pending payments"}</li>
                                 <li>{t("genetic_algorithm.ai_feature_ops") || "Operational dashboard: natural-language summary of your fleet status"}</li>

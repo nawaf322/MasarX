@@ -95,7 +95,7 @@ export const NotificationsEditor = ({ event, channel, templates, onSave, brandin
             <p style="margin-top: 30px; font-size: 14px; color: #6b7280; text-align: center;">Reference Date: {{date}}</p>
         </div>
         <div style="background-color: #f9fafb; padding: 20px; text-align: center; font-size: 12px; color: #9ca3af; border-top: 1px solid #e5e7eb;">
-            &copy; ${new Date().getFullYear()} Deprixa Plus. All rights reserved.
+            &copy; ${new Date().getFullYear()} MasarX. All rights reserved.
         </div>
     </div>
 </div>`;
@@ -148,7 +148,7 @@ export const NotificationsEditor = ({ event, channel, templates, onSave, brandin
     <a href="{{tracking_url}}" style="color: ${primary}; text-decoration: none; border-bottom: 1px solid ${primary};">Track Package &rarr;</a>
     
     <div style="margin-top: 40px; padding-top: 20px; border-top: 1px dashed #e5e5ea; font-size: 11px; color: #8e8e93;">
-        Sent via Deprixa Plus • {{date}}
+        Sent via MasarX • {{date}}
     </div>
 </div>`;
         }
@@ -159,7 +159,7 @@ export const NotificationsEditor = ({ event, channel, templates, onSave, brandin
     // renderPreview replicates master.blade.php logic roughly for preview
     const renderPreview = () => {
         const logoUrl = branding.logo_url || 'https://via.placeholder.com/150x50?text=Logo';
-        const companyName = branding.company_name || 'Deprixa Logistics';
+        const companyName = branding.company_name || 'MasarX Logistics';
         const color = branding.primary_color || '#1f2937';
 
         // Mock variable replacement

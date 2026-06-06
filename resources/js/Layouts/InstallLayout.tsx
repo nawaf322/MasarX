@@ -32,7 +32,7 @@ export default function InstallLayout({ currentStep, children }: Props) {
                     <div className="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center">
                         <span className="text-white font-bold text-sm">D</span>
                     </div>
-                    <span className="font-bold text-slate-800 text-lg tracking-tight">Deprixa Plus</span>
+                    <span className="font-bold text-slate-800 text-lg tracking-tight">MasarX</span>
                 </div>
 
                 {/* Language selector */}

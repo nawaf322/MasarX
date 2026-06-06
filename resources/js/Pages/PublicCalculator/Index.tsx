@@ -270,7 +270,7 @@ export default function PublicCalculatorIndex({
             rate_data:    rate,
         };
 
-        try { localStorage.setItem('deprixa_calculator_prefill', JSON.stringify(prefill)); } catch {}
+        try { localStorage.setItem('masarx_calculator_prefill', JSON.stringify(prefill)); } catch {}
 
         if (isAuth) {
             router.visit(route('shipments.from-rate'));

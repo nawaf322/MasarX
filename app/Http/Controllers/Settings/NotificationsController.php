@@ -148,13 +148,13 @@ class NotificationsController extends Controller
                 if ($testPhone) {
                     if (!empty($config['whatsapp_from'])) {
                         try {
-                            $service->sendWhatsapp($config, $testPhone, 'Test WhatsApp from Deprixa Plus. Your Twilio integration is working.');
+                            $service->sendWhatsapp($config, $testPhone, 'Test WhatsApp from MasarX. Your Twilio integration is working.');
                             $sent[] = 'WhatsApp';
                         } catch (\Exception $e) {
                             // Fallback to SMS if WhatsApp fails
                             if (!empty($config['sms_from'])) {
                                 try {
-                                    $service->sendSms($config, $testPhone, 'Test SMS from Deprixa Plus. Your Twilio integration is working.');
+                                    $service->sendSms($config, $testPhone, 'Test SMS from MasarX. Your Twilio integration is working.');
                                     $sent[] = 'SMS';
                                 } catch (\Exception $e2) {
                                     throw $e;
@@ -164,7 +164,7 @@ class NotificationsController extends Controller
                             }
                         }
                     } elseif (!empty($config['sms_from'])) {
-                        $service->sendSms($config, $testPhone, 'Test SMS from Deprixa Plus. Your Twilio integration is working.');
+                        $service->sendSms($config, $testPhone, 'Test SMS from MasarX. Your Twilio integration is working.');
                         $sent[] = 'SMS';
                     }
                 }

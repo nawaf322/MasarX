@@ -58,9 +58,9 @@ class DispatchWebhookJob implements ShouldQueue
 
         $headers = [
             'Content-Type' => 'application/json',
-            'User-Agent' => 'Deprixa-Plus-Webhook/1.0',
-            'X-Deprixa-Event' => $this->event,
-            'X-Deprixa-Timestamp' => $timestamp,
+            'User-Agent' => 'MasarX-Plus-Webhook/1.0',
+            'X-MasarX-Event' => $this->event,
+            'X-MasarX-Timestamp' => $timestamp,
         ];
 
         $secret = null;
@@ -77,7 +77,7 @@ class DispatchWebhookJob implements ShouldQueue
         if ($secret) {
             $signaturePayload = $timestamp . '.' . $payloadJson;
             $signature = hash_hmac('sha256', $signaturePayload, $secret);
-            $headers['X-Deprixa-Signature'] = 'sha256=' . $signature;
+            $headers['X-MasarX-Signature'] = 'sha256=' . $signature;
         }
 
         if (! empty($this->subscription->headers) && is_array($this->subscription->headers)) {

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Jobs\ImportShipmentsJob;
-use App\Services\DeprixaProShipmentImporter;
+use App\Services\MasarXProShipmentImporter;
 use App\Models\ImportJob;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -129,8 +129,8 @@ class ImportController extends Controller
     }
 
     /**
-     * Import shipments from Deprixa Pro SQL dumps.
-     * POST /import/deprixa-pro
+     * Import shipments from MasarX Pro SQL dumps.
+     * POST /import/masarx-pro
      *
      * Required files: cdb_add_order.sql
      * Recommended:    cdb_users.sql (auto-imports customers; optional if customers already exist)
@@ -138,7 +138,7 @@ class ImportController extends Controller
      *                 cdb_senders_addresses.sql, cdb_country.sql,
      *                 cdb_state.sql, cdb_city.sql
      */
-    public function importDeprixaPro(Request $request): \Illuminate\Http\JsonResponse
+    public function importMasarXPro(Request $request): \Illuminate\Http\JsonResponse
     {
         $request->validate([
             'files'   => 'required|array|min:1|max:8',
@@ -178,7 +178,7 @@ class ImportController extends Controller
         // - If not included: uses existing DB customers (throws if none exist)
 
         try {
-            $importer = new DeprixaProShipmentImporter(
+            $importer = new MasarXProShipmentImporter(
                 $sqlContent,
                 Auth::user()->organization_id,
                 Auth::id()

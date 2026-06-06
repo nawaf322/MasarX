@@ -217,9 +217,9 @@ class InstallController extends Controller
             $tableCount = (int) $pdo->query("SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = '{$request->db_name}'")->fetchColumn();
 
             if ($tableCount === 0) {
-                $sqlFile = base_path('database/sql/deprixa_lite.sql');
+                $sqlFile = base_path('database/sql/masarx_lite.sql');
                 if (!file_exists($sqlFile)) {
-                    throw new \RuntimeException('SQL file not found: database/sql/deprixa_lite.sql');
+                    throw new \RuntimeException('SQL file not found: database/sql/masarx_lite.sql');
                 }
 
                 // Parse and execute SQL statements using a quote-aware tokenizer

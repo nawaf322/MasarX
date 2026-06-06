@@ -48,7 +48,7 @@ class BrandingController extends Controller
 
         return Inertia::render('Settings/Branding', [
             'branding' => [
-                'app_name' => $org?->name ?? 'Deprixa Plus',
+                'app_name' => $org?->name ?? 'MasarX',
                 'primary_color' => $org?->primary_color ?? '#4F46E5',
                 'secondary_color' => $org?->secondary_color ?? '#10B981',
                 'accent_color' => $org?->accent_color ?? '#F59E0B',

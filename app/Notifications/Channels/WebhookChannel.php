@@ -65,8 +65,8 @@ class WebhookChannel
         try {
             $response = Http::timeout(5)
                 ->withHeaders([
-                    'X-Deprixa-Event' => 'notification',
-                    'X-Deprixa-Signature' => $secret ? hash_hmac('sha256', json_encode($payload), $secret) : ''
+                    'X-MasarX-Event' => 'notification',
+                    'X-MasarX-Signature' => $secret ? hash_hmac('sha256', json_encode($payload), $secret) : ''
                 ])
                 ->post($url, $payload);
 

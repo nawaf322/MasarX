@@ -50,9 +50,9 @@ class NotificationService
         ]);
 
         try {
-            Mail::mailer('smtp_test')->raw('This is a test email from Deprixa Plus Settings.', function ($message) use ($toEmail, $config) {
+            Mail::mailer('smtp_test')->raw('This is a test email from MasarX Settings.', function ($message) use ($toEmail, $config) {
                 $message->to($toEmail)
-                    ->from($config['from_email'], $config['from_name'] ?? 'Deprixa Test')
+                    ->from($config['from_email'], $config['from_name'] ?? 'MasarX Test')
                     ->subject('SMTP Configuration Test');
             });
             return true;

@@ -85,9 +85,9 @@ function WebhookDocsPanel({
                         <p className="font-semibold">{t('settings.api.webhook_req_headers_title')}</p>
                         <pre className="bg-blue-100/80 dark:bg-blue-900/40 rounded p-2 font-mono text-[11px] overflow-x-auto leading-relaxed">
 {`Content-Type: application/json
-X-Deprixa-Event: shipment.created
-X-Deprixa-Timestamp: 1700000000
-X-Deprixa-Signature: sha256=<hmac_sha256>`}
+X-MasarX-Event: shipment.created
+X-MasarX-Timestamp: 1700000000
+X-MasarX-Signature: sha256=<hmac_sha256>`}
                         </pre>
                     </div>
 
@@ -279,7 +279,7 @@ export default function WebhooksForm({ webhook }: { webhook: WebhookFormData | n
                                 type="url"
                                 value={data.callback_url}
                                 onChange={(e) => setData('callback_url', e.target.value)}
-                                placeholder="https://your-server.com/deprixa/webhook"
+                                placeholder="https://your-server.com/masarx/webhook"
                                 className={errors.callback_url ? 'border-destructive' : ''}
                             />
                             {errors.callback_url && <p className="text-xs text-destructive">{errors.callback_url}</p>}

@@ -1,9 +1,9 @@
 {
     "$schema": "https://getcomposer.org/schema.json",
-    "name": "coddingpro/deprixa-plus",
+    "name": "coddingpro/masarx-plus",
     "version": "1.2.0",
     "type": "project",
-    "description": "Deprixa Plus — The All-in-One Courier & Logistics SaaS Platform",
+    "description": "MasarX — The All-in-One Courier & Logistics SaaS Platform",
     "keywords": ["courier", "logistics", "saas", "shipment", "tracking", "laravel"],
     "license": "proprietary",
     "require": {

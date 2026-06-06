@@ -74,7 +74,7 @@
                 <div style="display: flex; align-items: center; gap: 16px;">
                     <div class="brand-mark"></div>
                     <div>
-                        <h1>{{ $organization->name ?? 'DeprixaPlus' }} · {{ __('invoice.title') }}</h1>
+                        <h1>{{ $organization->name ?? 'MasarXPlus' }} · {{ __('invoice.title') }}</h1>
                         <div class="topbar-subtitle">{{ $organization->tagline ?? $organization->legal_name ?? __('invoice.brand_tagline') }}</div>
                     </div>
                 </div>
