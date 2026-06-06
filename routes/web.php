@@ -113,6 +113,8 @@ Route::middleware(['auth', 'verified', \App\Http\Middleware\CheckTenant::class, 
 
     // Invoice view — accessible to all authenticated users (customers can view their own invoices)
     Route::get('/invoices/{shipment}', [\App\Http\Controllers\InvoiceController::class, 'show'])->name('invoices.show');
+    // ZATCA-compliant Arabic tax invoice (printable HTML / PDF with QR)
+    Route::get('/invoices/{shipment}/tax', [\App\Http\Controllers\InvoiceController::class, 'taxInvoice'])->name('invoices.tax');
 
     // Billing / Invoicing (basic — remitos y facturas PDF)
     Route::middleware('can:settings.billing.view')->group(function () {

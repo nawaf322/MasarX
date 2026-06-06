@@ -31,6 +31,27 @@ class Payment extends Model
     public const METHOD_MANUAL = 'manual';
     public const METHOD_STRIPE = 'stripe';
     public const METHOD_PAYPAL = 'paypal';
+    // Saudi-market payment methods
+    public const METHOD_MADA          = 'mada';
+    public const METHOD_APPLE_PAY     = 'apple_pay';
+    public const METHOD_BANK_TRANSFER = 'bank_transfer';
+    public const METHOD_TABBY         = 'tabby';
+    public const METHOD_TAMARA        = 'tamara';
+
+    /** All supported payment methods. */
+    public static function methods(): array
+    {
+        return [
+            self::METHOD_MADA,
+            self::METHOD_APPLE_PAY,
+            self::METHOD_BANK_TRANSFER,
+            self::METHOD_STRIPE,
+            self::METHOD_TABBY,
+            self::METHOD_TAMARA,
+            self::METHOD_PAYPAL,
+            self::METHOD_MANUAL,
+        ];
+    }
 
     protected $fillable = [
         'shipment_id',
@@ -77,10 +98,15 @@ class Payment extends Model
     public function getMethodLabelAttribute(): string
     {
         return match ($this->method) {
-            self::METHOD_STRIPE => 'Stripe',
-            self::METHOD_PAYPAL => 'PayPal',
-            self::METHOD_MANUAL => __('Manual'),
-            default => $this->method,
+            self::METHOD_MADA          => 'مدى',
+            self::METHOD_APPLE_PAY     => 'Apple Pay',
+            self::METHOD_BANK_TRANSFER => 'تحويل بنكي',
+            self::METHOD_TABBY         => 'تابي (Tabby)',
+            self::METHOD_TAMARA        => 'تمارا (Tamara)',
+            self::METHOD_STRIPE        => 'بطاقة ائتمان',
+            self::METHOD_PAYPAL        => 'PayPal',
+            self::METHOD_MANUAL        => __('Manual'),
+            default                    => $this->method,
         };
     }
 }

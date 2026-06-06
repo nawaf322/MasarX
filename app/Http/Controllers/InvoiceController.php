@@ -301,6 +301,80 @@ class InvoiceController extends Controller
     }
 
     /**
+     * ZATCA-compliant Arabic (RTL) tax invoice — printable HTML / PDF.
+     * Shows 15% VAT breakdown and a ZATCA Phase-1 QR code.
+     */
+    public function taxInvoice(Shipment $shipment)
+    {
+        $user = Auth::user();
+
+        if ($shipment->organization_id !== $user->organization_id) {
+            abort(403);
+        }
+
+        if ($user->hasRole('customer')) {
+            $ownedByCustomer =
+                (int) $shipment->created_by === $user->id
+                || ($shipment->locker_id && Locker::where('id', $shipment->locker_id)->where('customer_id', $user->id)->exists())
+                || ($shipment->pre_alert_id && PreAlert::where('id', $shipment->pre_alert_id)->where('customer_id', $user->id)->exists());
+            if (! $ownedByCustomer) {
+                abort(403);
+            }
+        }
+
+        $shipment->load(['organization', 'packages']);
+        $org = $shipment->organization;
+
+        // Resolve the VAT-inclusive grand total. If the stored total already
+        // includes tax, derive the net + VAT from it; otherwise add VAT on top.
+        $vatEnabled = (bool) ($org->vat_enabled ?? true);
+        $storedTotal = (float) ($shipment->total ?? $shipment->subtotal ?? 0);
+
+        if ($vatEnabled) {
+            // Treat the stored total as VAT-inclusive (most carriers quote gross).
+            $grandTotal = round($storedTotal, 2);
+            $net        = \App\Support\SaudiVat::netFromInclusive($grandTotal);
+            $vatAmount  = \App\Support\SaudiVat::fromInclusive($grandTotal);
+        } else {
+            $net        = round($storedTotal, 2);
+            $vatAmount  = 0.0;
+            $grandTotal = $net;
+        }
+
+        $discount = (float) ($shipment->discount ?? 0);
+        $currency = $shipment->currency ?: 'SAR';
+
+        $sellerName = $org->legal_name ?: $org->name;
+        $vatNumber  = $org->vat_number ?: ($org->tax_id ?: '');
+        $timestamp  = ($shipment->created_at ?? now())->toIso8601String();
+
+        // ZATCA Phase-1 TLV Base64 QR payload
+        $zatcaPayload = app(\App\Services\ZatcaQrService::class)->generate(
+            $sellerName,
+            (string) $vatNumber,
+            $timestamp,
+            number_format($grandTotal, 2, '.', ''),
+            number_format($vatAmount, 2, '.', ''),
+        );
+
+        return view('invoices.tax-invoice', [
+            'shipment'     => $shipment,
+            'org'          => $org,
+            'sellerName'   => $sellerName,
+            'vatNumber'    => $vatNumber,
+            'crNumber'     => $org->commercial_registration,
+            'net'          => $net,
+            'discount'     => $discount,
+            'vatAmount'    => $vatAmount,
+            'grandTotal'   => $grandTotal,
+            'vatEnabled'   => $vatEnabled,
+            'currency'     => $currency,
+            'zatcaPayload' => $zatcaPayload,
+            'issuedAt'     => ($shipment->created_at ?? now()),
+        ]);
+    }
+
+    /**
      * Send invoice by email using SMTP from Settings > Notifications.
      */
     public function sendEmail(Request $request, Shipment $shipment)

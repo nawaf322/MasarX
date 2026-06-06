@@ -39,6 +39,10 @@ class Organization extends Model
         'is_active',
         // Identity & Location
         'tax_id',
+        'vat_number',
+        'commercial_registration',
+        'national_address',
+        'vat_enabled',
         'legal_name',
         'email',
         'phone',
@@ -80,6 +84,8 @@ class Organization extends Model
     protected $casts = [
         'settings' => 'array',
         'is_active' => 'boolean',
+        'national_address' => 'array',
+        'vat_enabled' => 'boolean',
         'sidebar_compact' => 'boolean',
         'sidebar_menu_order' => 'array',
         'login_visible_fields' => 'array',
