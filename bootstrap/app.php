@@ -118,8 +118,10 @@ return Application::configure(basePath: dirname(__DIR__))
 
         // Log every exception during install for debugging
         $exceptions->report(function (\Throwable $e) {
-            if (str_contains(request()->path(), 'install')) {
-                \Illuminate\Support\Facades\Log::error('[INSTALL ERROR] ' . get_class($e) . ': ' . $e->getMessage() . ' in ' . $e->getFile() . ':' . $e->getLine());
-            }
+            try {
+                if (app()->bound('request') && str_contains(request()->path(), 'install')) {
+                    \Illuminate\Support\Facades\Log::error('[INSTALL ERROR] ' . get_class($e) . ': ' . $e->getMessage() . ' in ' . $e->getFile() . ':' . $e->getLine());
+                }
+            } catch (\Throwable $ignored) {}
         });
     })->create();
