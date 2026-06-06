@@ -7,7 +7,7 @@ import { PaginationBar } from '@/ui/kit/PaginationBar';
 import {
     Inbox, Package, CheckCircle, XCircle, Clock, Truck,
     MapPin, Building2, Copy, Plus, ArrowRight,
-    Hash, Info, ExternalLink, CalendarClock,
+    Hash, Info, ExternalLink, CalendarClock, Wallet,
 } from 'lucide-react';
 
 // ── Types ─────────────────────────────────────────────────────────────────────
@@ -69,6 +69,29 @@ interface PendingPickup {
     driver_assigned: boolean;
 }
 
+interface WalletData {
+    balance: number;
+    currency: string;
+    formatted_balance: string;
+}
+
+interface RecentShipment {
+    id: number;
+    tracking_number: string;
+    status: string;
+    receiver_name: string;
+    receiver_city: string;
+    total_amount: number;
+    currency: string;
+    created_at: string;
+}
+
+interface ShipmentCounts {
+    total: number;
+    in_transit: number;
+    delivered: number;
+}
+
 interface Props {
     locker:          Locker | null;
     preAlerts:       Paginated<PreAlert>;
@@ -76,6 +99,9 @@ interface Props {
     customerName:    string;
     suitePrefix:     string;
     pendingPickups:  PendingPickup[];
+    wallet:          WalletData;
+    recentShipments: RecentShipment[];
+    shipmentCounts:  ShipmentCounts;
 }
 
 // ── Status styles (no hardcoded labels — resolved via t() inside component) ───
@@ -90,7 +116,7 @@ const statusStyles: Record<string, { color: string; icon: React.ElementType }> =
 
 // ── Main page ─────────────────────────────────────────────────────────────────
 
-export default function MyLockerIndex({ locker, preAlerts, summary, customerName, suitePrefix, pendingPickups }: Props) {
+export default function MyLockerIndex({ locker, preAlerts, summary, customerName, suitePrefix, pendingPickups, wallet, recentShipments, shipmentCounts }: Props) {
     const { t } = useTranslation();
     const [copied, setCopied] = useState(false);
 
@@ -152,6 +178,45 @@ export default function MyLockerIndex({ locker, preAlerts, summary, customerName
                     >
                         <Plus className="w-4 h-4" />
                         {t('my_locker.register_package')}
+                    </Link>
+                </div>
+
+                {/* ── Quick Stats: Wallet + Shipments ── */}
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+                    {/* Wallet card */}
+                    <Link href={route('my-wallet.index')}
+                          className="rounded-2xl p-5 text-white block hover:opacity-95 transition-opacity"
+                          style={{ background: 'linear-gradient(135deg, #FF6B4A 0%, #E2231A 100%)' }}>
+                        <div className="flex items-center justify-between mb-3">
+                            <Wallet className="w-5 h-5 text-white/80" />
+                            <span className="text-xs text-white/70">محفظتي</span>
+                        </div>
+                        <p className="text-2xl font-black">
+                            {new Intl.NumberFormat('ar-SA', { style: 'currency', currency: wallet.currency }).format(wallet.balance)}
+                        </p>
+                        <p className="text-xs text-white/70 mt-1">الرصيد المتاح</p>
+                    </Link>
+
+                    {/* Shipments in transit */}
+                    <Link href={route('my-shipments.index')}
+                          className="bg-white rounded-2xl border border-gray-100 p-5 hover:border-orange-200 transition-colors block shadow-sm">
+                        <div className="flex items-center justify-between mb-3">
+                            <Truck className="w-5 h-5 text-orange-500" />
+                            <span className="text-xs text-gray-400">في الطريق</span>
+                        </div>
+                        <p className="text-2xl font-black text-gray-900">{shipmentCounts.in_transit}</p>
+                        <p className="text-xs text-gray-500 mt-1">من {shipmentCounts.total} شحنة إجمالاً</p>
+                    </Link>
+
+                    {/* Create shipment CTA */}
+                    <Link href={route('shipments.create')}
+                          className="bg-gray-900 rounded-2xl p-5 hover:bg-gray-800 transition-colors block">
+                        <div className="flex items-center justify-between mb-3">
+                            <Plus className="w-5 h-5 text-white/70" />
+                            <span className="text-xs text-white/50">جديد</span>
+                        </div>
+                        <p className="text-base font-bold text-white">إنشاء بوليصة شحن</p>
+                        <p className="text-xs text-white/50 mt-1">قارن الأسعار واحجز فوراً</p>
                     </Link>
                 </div>
 

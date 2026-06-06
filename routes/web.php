@@ -106,6 +106,9 @@ Route::middleware(['auth', 'verified', \App\Http\Middleware\CheckTenant::class, 
         Route::post('/customers/bulk-destroy', [\App\Http\Controllers\CustomerController::class, 'bulkDestroy'])->name('customers.bulk-destroy')->middleware('can:customers.delete');
         Route::delete('/customers/{customer}', [\App\Http\Controllers\CustomerController::class, 'destroy'])->name('customers.destroy')->middleware('can:customers.delete');
         Route::post('/customers/{customer}/resend-invitation', [\App\Http\Controllers\CustomerController::class, 'resendPortalInvitation'])->name('customers.resend-invitation');
+        // Customer wallet management (admin)
+        Route::get('/customers/{customer}/wallet',  [\App\Http\Controllers\CustomerWalletController::class, 'adminIndex'])->name('customers.wallet');
+        Route::post('/customers/{customer}/wallet/credit', [\App\Http\Controllers\CustomerWalletController::class, 'adminCredit'])->name('customers.wallet.credit');
     });
 
     // Invoice view — accessible to all authenticated users (customers can view their own invoices)
@@ -625,6 +628,16 @@ Route::middleware(['auth', 'verified', \App\Http\Middleware\CheckTenant::class, 
 
     // ─── My Locker (customer self-service portal) ─────────────────────────────
     Route::get('/my-locker', [\App\Http\Controllers\MyLockerController::class, 'index'])->name('my-locker.index');
+
+    // ─── My Wallet (customer wallet) ──────────────────────────────────────────
+    Route::prefix('my-wallet')->name('my-wallet.')->group(function () {
+        Route::get('/',          [\App\Http\Controllers\CustomerWalletController::class, 'index'])->name('index');
+        Route::get('/recharge',  [\App\Http\Controllers\CustomerWalletController::class, 'rechargeForm'])->name('recharge');
+        Route::post('/recharge', [\App\Http\Controllers\CustomerWalletController::class, 'processRecharge'])->name('recharge.store');
+    });
+
+    // ─── My Shipments (customer self-service) ─────────────────────────────────
+    Route::get('/my-shipments', [\App\Http\Controllers\CustomerPortalController::class, 'shipments'])->name('my-shipments.index');
 
     // ─── Customer Contacts / Recipients ───────────────────────────────────────
     Route::prefix('my-contacts')->name('my-contacts.')->group(function () {

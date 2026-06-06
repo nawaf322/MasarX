@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Locker;
 use App\Models\OriginPickup;
 use App\Models\PreAlert;
+use App\Models\Shipment;
+use App\Services\CustomerWalletService;
 use App\Services\Settings\SettingsResolver;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,6 +19,8 @@ class MyLockerController extends Controller
      * Customer-facing locker dashboard.
      * Shows the customer's assigned locker and all their pre-alerts.
      */
+    public function __construct(private CustomerWalletService $walletService) {}
+
     public function index(Request $request): Response
     {
         $customerId = Auth::id();
@@ -84,6 +88,22 @@ class MyLockerController extends Controller
                 'driver_assigned' => !is_null($p->driver_id),
             ]);
 
+        // Customer wallet balance
+        $wallet = $this->walletService->getOrCreate(Auth::user());
+
+        // Recent shipments (last 5)
+        $recentShipments = Shipment::where('organization_id', $orgId)
+            ->where('created_by', $customerId)
+            ->select(['id', 'tracking_number', 'status', 'receiver_name', 'receiver_city', 'total_amount', 'currency', 'created_at'])
+            ->orderByDesc('created_at')
+            ->limit(5)
+            ->get();
+
+        $shipmentCounts = Shipment::where('organization_id', $orgId)
+            ->where('created_by', $customerId)
+            ->selectRaw('COUNT(*) as total, SUM(status = "in_transit") as in_transit, SUM(status = "delivered") as delivered')
+            ->first();
+
         return Inertia::render('MyLocker/Index', [
             'locker'          => $locker,
             'preAlerts'       => $preAlerts,
@@ -91,6 +111,17 @@ class MyLockerController extends Controller
             'customerName'    => Auth::user()->name,
             'suitePrefix'     => $suitePrefix,
             'pendingPickups'  => $pendingPickups,
+            'wallet'          => [
+                'balance'           => (float) $wallet->balance,
+                'currency'          => $wallet->currency,
+                'formatted_balance' => $wallet->formatted_balance,
+            ],
+            'recentShipments' => $recentShipments,
+            'shipmentCounts'  => [
+                'total'      => (int) ($shipmentCounts->total ?? 0),
+                'in_transit' => (int) ($shipmentCounts->in_transit ?? 0),
+                'delivered'  => (int) ($shipmentCounts->delivered ?? 0),
+            ],
         ]);
     }
 }
